@@ -8,11 +8,14 @@ const SearchForm = function ({filterArticles}){
 
     const handleSubmit = function(e){
         e.preventDefault()
-        filterArticles(userInput)
     };
-
+    
     const handleInput = function(e){
+        
         setUserInput(e.target.value)
+        e.target.value 
+        ? filterArticles(userInput)
+        : filterArticles(false)
         
     }
 

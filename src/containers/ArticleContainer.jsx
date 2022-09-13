@@ -9,7 +9,7 @@ const ArticleContainer = function (){
 
 
     const filterArticles = function(filterBy){
-       setFilteredArticles(articleList.filter(article => article.title.toLowerCase().indexOf(filterBy) !== -1))
+        filterBy ? setFilteredArticles(articleList.filter(article => article.title.toLowerCase().indexOf(filterBy) !== -1)) : setFilteredArticles(articleList)
     };
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const ArticleContainer = function (){
         const fetchObjectsJson = (objectId) => fetch(`https://hacker-news.firebaseio.com/v0/item/${objectId}.json`)
         .then(getJson)
         const getJson = (res) => res.json()
-        const getTop5 = (top5) => top5.slice(0, 5)
+        const getTop5 = (top5) => top5.slice(0, 20)
         const getObjects = (idList) => idList.map(fetchObjectsJson)
         const fulfillPromises = (promises) => Promise.all(promises)
         const setStates = (objects) => {setArticleList(objects); setFilteredArticles(objects)}
@@ -31,12 +31,7 @@ const ArticleContainer = function (){
         .then(fulfillPromises)
         .then(setStates)
         
-        
-        
     },[]);
-
-
-
 
     return (
         

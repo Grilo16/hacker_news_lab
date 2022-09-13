@@ -1,7 +1,9 @@
 const Article = function({articleObject}){
     return (
         <li className="article">
-        <p>{articleObject.title}</p>
+        <a href={articleObject.url}>
+            <p>{articleObject.title}</p>
+            </a>
       </li>
     )
 };
